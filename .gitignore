@@ -37,3 +37,13 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# README
+README.html
+
+# knitted files
+
+docs/*.html
+docs/*.nb.html
+docs/*.pdf
+

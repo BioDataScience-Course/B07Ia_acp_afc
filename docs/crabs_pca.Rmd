@@ -1,0 +1,143 @@
+---
+title: "Untitled"
+author: "___"
+date: "__/__/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+SciViews::R
+```
+
+<!--- Consignes
+En partant du jeu de données `crabs` du package `MASS`, réalisez une ACP afin de différencier les 4 groupes *Leptograpsus variegatus*.
+---->
+
+
+# Introduction
+
+<!--- Consignes 
+Proposez une courte introduction  de 5 à 10 phrases sur le jeu de données `crabs`. N'hésitez pas à utiliser la page d'aide associée à ces données.
+--->
+
+# Analyse
+
+<!--- Consignes
+Importez le jeu de données crabs du package MASS
+--->
+
+```{r importation}
+crabs <- read("...", package = "...")
+```
+
+<!--- Consignes
+Réalisez une matrice de nuages de points graphiques pour vérifier la linéarité entre les variables quantitatives intéressantes. Décrivez cette matrice en 5 phrases maximum.
+Astuce : Il existe un snippet pour vous aider.
+--->
+
+```{r scatmat}
+
+```
+
+<!--- Consignes
+Réalisez un graphique de la matrice de corrélation de Pearson des variables quantitatives. Décrivez cette matrice en 3-5 phrases.
+--->
+
+```{r corrplot}
+crabs_corr <- correlation()
+plot(crabs_corr)
+```
+
+
+## ACP sur les variables brutes
+
+<!--- Consignes
+Réalisez une ACP avec la fonction `pca()`. Utilisez l'ensemble des variables disponibles et pertinentes. 
+--->
+
+```{r pca}
+crabs_pca <- pca()
+```
+
+<!--- Consignes
+Utilisez la fonction summary() afin d'avoir un résumé de l'informations de l'objet crabs_pca. Décrivez en maximum 3 phrases le résultat de cette première fonction.
+--->
+
+```{r pca_summary}
+
+```
+
+<!--- Consignes
+Réalisez un graphique des éboulis sur l'objet crabs_pca. Décrivez en maximum 3 phrases le résultat de cette fonction. Ayez une réflexion sur la part de variance du premier axe de l'ACP. 
+--->
+
+```{r pca_scree}
+chart$scree()
+```
+
+## ACP sur des indices calculés
+
+<!--- Consignes
+La première composante principale de l'ACP sur les variables brutes est saturée. Il est dans ce cas utile de calculer des indices. Réalisez la même analyse en divisant chacune des variables par la variable `length`.
+--->
+
+```{r pca2_index}
+
+```
+
+<!--- Consignes
+Réalisez une seconde ACP avec la fonction `pca()`. Utilisez l'ensemble des variables disponibles et pertinentes.
+--->
+
+```{r pca2}
+crabs_pca2 <- pca()
+```
+
+<!--- Consignes
+Utilisez la fonction summary() afin d'avoir un résumé de l'informations de l'objet crabs_pca2. Décrivez en maximum 3 phrases le résultat de cette première fonction.
+--->
+
+```{r pca2_summary}
+
+```
+
+<!--- Consignes
+Réalisez un graphique des éboulis sur l'objet crabs_pca. Décrivez en maximum 3 phrases le résultat de cette fonction. 
+--->
+
+```{r pca2_scree}
+
+```
+
+<!--- Consignes
+Réalisez un graphique permettant de visualiser la représentation des variables dans le premier plan de l'ACP. Décrivez en maximum 3 phrases le résultat de cette fonction. 
+--->
+
+
+```{r pca2_loadings}
+```
+
+
+<!--- consignes
+Calculez une nouvelle variable dans le jeu de données crabs qui combine la variable `species` et la variable `sex`. Nommez cette nouvelle variable `sp_sex`. 
+--->
+
+```{r new_var}
+crabs %>.%
+  mutate(., sp_sex = paste()) -> crabs
+```
+
+<!--- Consignes
+Réalisez un graphique permettant de visualiser la représentation des individus dans le premier plan de l'ACP. Utilisez la variable sp_sex afin de différencier les individus sur votre graphique. Décrivez en 5 à 8 phrases le résultat obtenu. 
+--->
+
+```{r pca2_scores}
+
+```
+
+# Conclusion 
+
+<!--- Consignes
+Concluez ce carnet de notes en 5 lignes maximum. 
+--->
