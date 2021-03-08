@@ -1,0 +1,85 @@
+---
+title: "___"
+author: "___"
+date: "__/__/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+SciViews::R
+```
+
+<!--- Consignes
+En partant du jeu de données `birds_atlas.csv` disponible dans le dossier `data/`, réalisez une AFC sur ce tableau. Ces données ont été extraite de la liste atlas du package ade4. Vous pouvez donc utilisez la fonction ?ade4::atlas afin d'avoir plus d'informations sur les données
+---->
+
+# Analyse
+
+<!--- Consignes
+Avant de débuter votre analyse, ajoutez dans le code SciViews lié à l'AFC mis à votre disposition dans le bookdown. Utilisez un script R pour y ajouter les fonctions utiles puis sourcer ce script dans ce Rmarkdown.
+--->
+
+```{r source_ca}
+
+```
+
+<!--- Consignes
+Importez les données birds_atlas.csv du dossier data/
+--->
+
+```{r importn}
+birds <- 
+```
+
+
+<!--- Consignes
+Utilisez les fonctions ci-dessous afin de découvrir les données. Répondez au questions suivantes : Combien y a t'il de stations ? Combien y a t'il d'espèces étudiées ? Quels est le nombre maximum d'observations sur le stations (sans tenir compte des espèces) ? Y a t'il une station qui ne comprend aucune observations d'oiseaux ?  Commentez en maximum 4 lignes.
+--->
+
+```{r}
+names(___)
+range(___) 
+rowSums(___)
+colSums(___)
+```
+
+
+<!--- Consignes
+Réalisez un graphique permettant de visualiser la distribution des espèces dans les différentes stations (astuce : utilisez geom_raster()). Décrivez ce graphique en maximum 4 lignes.
+---->
+
+```{r birds_raster}
+
+```
+
+<!--- Consignes
+Réalisez une analyse factorielle des correspondances sur le tableau de données `birds`. Nommez cet objet `birds_ca`. Réalisez ensuite un résumé de cet objet. Décrivez en maximum 3 lignes ce résumé.
+--->
+
+```{r ca}
+birds_ca <- 
+summary(...)
+```
+
+<!--- Consignes
+Réalisez le graphique des éboulis sur cet objet. Décrivez en maximum 2 lignes ce graphique.
+--->
+
+```{r scree}
+
+```
+
+<!--- Consignes
+Réalisez la représentation dans l'espaces des stations et des espèces. Commentez en maximum 4 lignes.
+--->
+
+```{r biplot}
+
+```
+
+# Conclusion
+
+<!--- Consignes
+Concluez ce carnet de notes en 5 lignes maximum. 
+--->

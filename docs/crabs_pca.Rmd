@@ -1,19 +1,18 @@
 ---
-title: "Untitled"
+title: "___"
 author: "___"
 date: "__/__/2021"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 SciViews::R
 ```
 
 <!--- Consignes
 En partant du jeu de données `crabs` du package `MASS`, réalisez une ACP afin de différencier les 4 groupes *Leptograpsus variegatus*.
 ---->
-
 
 # Introduction
 
@@ -51,6 +50,15 @@ plot(crabs_corr)
 
 
 ## ACP sur les variables brutes
+
+<!--- Consignes
+Avant de débuter votre analyse, ajoutez dans le code SciViews lié à l'ACP mis à votre disposition dans le bookdown. Utilisez un script R pour y ajouter les fonctions utiles puis sourcer ce script dans ce Rmarkdown.
+--->
+
+```{r source_pca}
+
+```
+
 
 <!--- Consignes
 Réalisez une ACP avec la fonction `pca()`. Utilisez l'ensemble des variables disponibles et pertinentes. 
