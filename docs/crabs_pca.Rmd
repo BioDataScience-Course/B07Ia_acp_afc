@@ -5,21 +5,17 @@ date: "___"
 output: html_document
 ---
 
-<!--% Avant toute chose, récupérez le code du cours relatif à l'ACP, placez le dans un script R dans le sous-dossier `R/` et sourcez-le dans le chunk de setup -->
+<!--% En partant du jeu de données `crabs` du package `MASS`, réalisez une ACP afin de différencier les quatre groupes de *Leptograpsus variegatus* (deux espèces et les deux sexes pour chaque espèce). -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-SciViews::R
-source(___)
+# Packages utiles
+
 ```
-
-<!--% En partant du jeu de données `crabs` du package `MASS`, vous allez réaliser une ACP afin de différencier les quatre groupes *Leptograpsus variegatus* (deux espèces et les deux sexes pour chaque espèce). -->
-
 
 # Introduction
 
-<!--% Aidez-vous de la page d'aide de `?crabs` pour rédiger une courte introduction de 5 phrases maximum. -->
-
+<!--% Rédigez une introduction de 5 phrases maximum sur *Leptograpsus variegatus* (Fabricius, 1793). -->
 
 # Analyse
 
@@ -29,76 +25,71 @@ source(___)
 crabs <- ___
 ```
 
-
 ## Exploration des données
 
-<!--% Réalisez une matrice de nuages de points pour vérifier la linéarité entre les variables quantitatives intéressantes. Décrivez ce que vous observez en 5 phrases maximum. Astuce : il existe un snippet pour vous aider ici. -->
+<!--% Réalisez une matrice de nuages de points pour vérifier la linéarité entre les variables quantitatives intéressantes. -->
 
 ```{r scatmat}
 
 ```
 
-<!--% Réalisez un graphique de la matrice de corrélation de Pearson des variables quantitatives. Décrivez ce que vous observez en 3-5 phrases. -->
+<!--% Interprétez la matrice de nuages de points en 3 phrases maximum. -->
+
+<!--% Réalisez un graphique de la matrice de corrélation de Pearson. -->
 
 ```{r corrplot}
-crabs_corr <- correlation(___)
-plot(crabs_corr)
+
 ```
 
+<!--% Interprétez la matrice de corrélation en 3 phrases.-->
 
 ## ACP sur les variables brutes
 
-<!--% Réalisez une ACP avec la fonction `pca()`. Utilisez l'ensemble des variables quantitatives à disposition. -->
+<!--% Réalisez une ACP avec la fonction `pca()`. Nommez cet objet `crabs_pca`. Affichez également le résumé de cet objet. Utilisez l'ensemble des variables quantitatives à disposition. -->
 
 ```{r pca}
-crabs_pca <- pca(___)
-```
-
-<!--% Utilisez la fonction `summary()` pour résumer votre ACP. Décrivez en maximum 3 phrases ce que vous obtenez. -->
-
-```{r pca_summary}
 
 ```
 
-<!--% Réalisez un graphique des éboulis sur l'objet `crabs_pca`. Décrivez en maximum 3 phrases le résultat. Ayez une réflexion également concernant la part de variance expérmiée sur le premier axe de l'ACP. -->
+<!--% Réalisez le graphique des éboulis de l'objet `crabs_pca`.-->
 
 ```{r pca_scree}
-chart$scree(___)
+
 ```
 
+<!--% Interprétez le résumé de l'ACP et le graphique des éboulis en 5 phrases. Ayez une réflexion également concernant la part de variance exprimée sur le premier axe de l'ACP. -->
 
 ## ACP sur des indices calculés
 
 <!--% Calculer des indices qui permettent de résoudre le problème observé ci-dessus. Préparez un jeu de données `crabs2` en divisant chacune des variables de `crabs` par `length`. -->
 
 ```{r crabs2}
-crabs2 <- ___
+
 ```
 
-<!--% Réalisez une seconde ACP avec la fonction `pca()` sur ce nouveau jeu de données `crabs2`. Utilisez l'ensemble des variables disponibles et pertinentes pour cette analyse. -->
+<!--% Réalisez une seconde ACP avec la fonction `pca()` sur `crabs2`. Nommez cet objet `crabs_pca2`. Affichez également le résumé de cet objet. Utilisez l'ensemble des variables disponibles et pertinentes pour cette analyse. -->
 
 ```{r pca2}
 crabs_pca2 <- pca(___)
 ```
 
-<!--% Utilisez à nouveau la fonction `summary()`et interprétez ce que vous obtenez en 3 phrase maximum en dessous du résultat. -->
-
-```{r pca2_summary}
-
-```
-
-<!--% Réalisez un graphique des éboulis sur l'objet `crabs_pca2`. Interprétez en maximum 3 phrases juste en dessous du graphique. -->
+<!--% Réalisez le graphique des éboulis sur l'objet `crabs_pca2`.-->
 
 ```{r pca2_scree}
 
 ```
 
-<!--% Réalisez un graphique permettant de visualiser la représentation des variables dans le premier plan de l'ACP. Interprétez en maximum 3 phrases juste en dessous du graphique. -->
+```{=html}
+<!--% Interprétez le résumé de l'ACP et le graphique des éboulis en 5 phrases.
 
+
+<!--% Réalisez un graphique permettant de visualiser la représentation des variables dans le premier plan de l'ACP. -->
+```
 ```{r pca2_loadings}
 
 ```
 
+<!--% Interprétez en 3 phrases ce graphique.-->
 
 <!--% Calculez une nouvelle variable dans le jeu de données `crabs2` qui combine la variable `species` et la variable `sex` en une seule. Nommez cette nouvelle variable `sp_sex`. -->
 
@@ -108,14 +99,14 @@ crabs2 %>.%
   crabs2
 ```
 
-<!--% Réalisez un graphique permettant de visualiser la représentation des individus dans le premier plan de l'ACP. Utilisez la variable `sp_sex` afin de différencier les individus sur votre graphique par la couleur. Décrivez en 3 à 5 phrases le résultat obtenu. -->
+<!--% Réalisez un graphique permettant de visualiser la représentation des individus dans le premier plan de l'ACP. Utilisez la variable `sp_sex` afin de différencier les individus sur votre graphique par la couleur. -->
 
 ```{r pca2_scores}
 
 ```
 
+<!--% Interprétez en 5 phrases ce graphique.-->
 
-# Conclusion 
+# Conclusion
 
 <!--% Concluez ce carnet de notes en 5 phrases maximum. -->
-

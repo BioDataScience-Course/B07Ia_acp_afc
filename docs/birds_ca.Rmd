@@ -5,26 +5,27 @@ date: "___"
 output: html_document
 ---
 
-<!--% Avant toute chose, récupérez le code du cours relatif à l'AFC, placez le dans un script R dans le sous-dossier `R/` et sourcez-le dans le chunk de setup -->
+<!--% En partant du jeu de données `birds_atlas.csv` disponible dans le sous-dossier `data/`, réalisez une AFC sur ce tableau. Ces données ont été extraites de la liste atlas du package {ade4}. Vous pouvez donc utiliser le code `?ade4::atlas` pour obtenir des informations sur ces données. -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-SciViews::R
-source(___)
+# Packages utiles
+
 ```
 
-<!--% En partant du jeu de données `birds_atlas.csv` disponible dans le sous-dossier `data/`, réalisez une AFC sur ce tableau. Ces données ont été extraite de la liste atlas du package {ade4}. Vous pouvez donc utilisez le code `?ade4::atlas` pour obtenir des informations sur ces données. -->
+# Introduction
 
+<!--% Rédigez une introduction de 3 phrases maximum sur l'étude réalisée dont birds est issu.-->
 
 # Analyse
 
 <!--% Importez les données `data/birds_atlas.csv` dans la variable `birds`. -->
 
 ```{r import}
-birds <- ___
+
 ```
 
-<!--% Utilisez les fonctions ci-dessous afin de découvrir les données. Répondez au questions suivantes : Combien y a t'il de stations ? Combien y a t'il d'espèces étudiées ? Quels est le nombre maximum d'observations faites dans ces stations (toutes espèces confondues) ? Y a t'il une ou plusieurs stations où aucune observation n'a été réalisée ?  Commentez en maximum 5 phrases. -->
+<!--% Utilisez les fonctions ci-dessous afin de découvrir les données. Répondez aux questions suivantes : combien y a-t-il de stations ? Combien y a-t-il d'espèces étudiées ? Quel est le nombre maximum d'observations faites dans ces stations (toutes espèces confondues) ? Y a-t-il une ou plusieurs stations où aucune observation n'a été réalisée ? -->
 
 ```{r desc}
 names(___)
@@ -33,33 +34,38 @@ rowSums(___)
 colSums(___)
 ```
 
-<!--% Réalisez un graphique permettant de visualiser la distribution des espèces dans les différentes stations (astuce : utilisez `geom_raster()`). Décrivez ce graphique en maximum 4 phrases. -->
+<!-- Décrivez vos résultats en 5 phrases.-->
+
+<!--% Réalisez un graphique permettant de visualiser la distribution des espèces dans les différentes stations (astuce : utilisez `geom_raster()`). -->
 
 ```{r raster}
 
 ```
 
-<!--% Réalisez une analyse factorielle des correspondances sur le tableau de données `birds`. Nommez cet objet `birds_ca`. Réalisez ensuite un résumé de cet objet. Décrivez en maximum 3 phrases ce que vous obtenez. -->
+<!-- Décrivez ce graphique en 3 phrases.-->
+
+<!--% Réalisez une analyse factorielle des correspondances sur le tableau de données `birds`. Nommez cet objet `birds_ca`. Affichez également le résumé de cet objet. -->
 
 ```{r ca}
-birds_ca <- ___
-summary(___)
+
 ```
 
-<!--% Réalisez le graphique des éboulis sur cet objet. Décrivez en maximum 2 phrases ce que vous observez juste en dessous du graphique. -->
+<!--% Réalisez le graphique des éboulis sur cet objet. -->
 
 ```{r scree}
 
 ```
 
-<!--% Réalisez le graphique AFC des stations et des espèces. Interprétez-le en maximum 5 phrases juste en dessous du graphique. -->
+<!--% Interprétez le résumé de l'AFC et le graphique des éboulis en 3 phrases. -->
+
+<!--% Réalisez le graphique AFC des stations et des espèces.-->
 
 ```{r biplot}
 
 ```
 
+<!--% Interprétez la disposition des stations, la disposition des espèces et les stations par rapport aux espèces en 5 phrases.-->
 
 # Conclusion
 
-<!--% Concluez ce carnet de notes en 5 phrases maximum. -->
-
+<!--% Concluez ce carnet de notes en 2 phrases. -->
