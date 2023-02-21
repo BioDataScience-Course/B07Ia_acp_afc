@@ -94,9 +94,7 @@ crabs_pca2 <- pca(___)
 <!--% Calculez une nouvelle variable dans le jeu de données `crabs2` qui combine la variable `species` et la variable `sex` en une seule. Nommez cette nouvelle variable `sp_sex`. -->
 
 ```{r new_var}
-crabs2 %>.%
-  mutate(., sp_sex = paste(___)) ->
-  crabs2
+crabs2 <- smutate(___, sp_sex = paste(___))
 ```
 
 <!--% Réalisez un graphique permettant de visualiser la représentation des individus dans le premier plan de l'ACP. Utilisez la variable `sp_sex` afin de différencier les individus sur votre graphique par la couleur. -->
