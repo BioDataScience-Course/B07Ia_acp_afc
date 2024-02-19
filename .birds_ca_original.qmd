@@ -1,0 +1,162 @@
+---
+title: "Analyse factorielle des correspondances sur des oiseaux"
+author: "___"
+date: "`r Sys.Date()`"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    toc: true
+editor: visual
+lang: fr
+editor_options: 
+  chunk_output_type: inline
+bibliography: references.bib
+---
+
+# Introduction et but
+
+Les massifs montagneux présentent une diversité d'habitats pour les oiseaux. La fréquentation des lieux par l'homme y est très variable selon le relief et la proximité ou non de routes ou de chemins. Ainsi, des espèces d'oiseaux plus farouches peuvent prospérer dans les zones plus difficile d'accès.
+
+Nous étudions ici la répartition d'oiseaux dans les Alpes françaises. Notre but est de cerner les stations et/ou les espèces qui sont particulières du point de vue de la composition de la faune aviaire.
+
+# Matériel et méthodes
+
+Le jeu de données est issu du package {ade4} (jeu de données `atlas`) et provient de l'ouvrage de @lebreton1977.
+
+L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {exploreit} version `r packageVersion("exploreit")` dans la [SciViews Box 2023](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler ce bloc-notes.
+
+# Résultats
+
+```{r setup, include=FALSE}
+# Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
+if (!"tools:tests" %in% search())
+  source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
+
+# Configuration de l'environnement SciViews::R
+SciViews::R(___, lang = "fr")
+```
+
+## Description des données
+
+Le tableau et le graphique suivants présentent les données. Il s'agit de l'observation de 19 espèces d'oiseaux en 23 stations différentes.
+
+<!--% Importez le jeu de données `birds_atlas.csv` disponible dans le sous-dossier `data`. Ces données ont été extraites de la liste atlas du package {ade4}. Vous pouvez donc utiliser `?ade4::atlas` pour obtenir des informations sur ces données. Transformez en data.frame et ajoutez les numéros des stations de 1 à 23 comme noms de lignes. Ensuite décrivez vos données avec skimr::skim(). Notez bien que les abondances sont ramenées à un petit nombre de niveaux : 0 = absent, 1 = rare à 3 = très abondant. -->
+
+<!--# Pour l'AFC, nous avons absolument besoin de noms pour les lignes autant que pour les colonnes du tableau. Cependant read() crée un objet data.table qui n'a pas de nom de lignes. Vous devez alors le convertir en data.frame, et vous ajoutez le numéro des 23 stations avec rownames(). -->
+
+```{r importca, record='RODFS', object='birds'}
+birds <- read(___)
+birds <- as.data.frame(birds)
+rownames(___) <- ___
+___
+```
+
+<!--% Visualisez ces données sur un graphique de type raster en utilisant geom_raster() (voir cours en ligne). -->
+
+```{r raster, record='RNP', arg='labels'}
+birds %>.%
+  smutate(., station = 1:nrow(birds)) %>.%
+  spivot_longer(., Fauvette_orphee:Bruant_proyer, names_to = "species", values_to = "n") %>.%
+  chart(___) +
+    ___
+```
+
+<!--% Interprétez votre tableau et votre graphique ci-dessous. -->
+
+```{r desccacomment, output='asis'}
+select_answer(r"-{
+[] -   Le jeu de données contient 19 variables quantitatives continues.
+[] -   Le jeu de données contient 19 variables quantitatives discrètes (dénombrements).
+[] -   Le jeu de données contient 19 variables qualitatives ordonnées.
+[] -   Le jeu de données contient 19 variables qualitatives non ordonnées.
+
+[] -   Il y a des valeurs manquantes.
+[] -   Le jeu de données est complet, sans valeurs manquantes.
+
+[] -   Les données doivent être tranformées en log(x + 1) car les abondances sont très différentes d'une espèce à l'autre.
+[] -   Les données doivent être stnadardisées avant analyse.
+[] -   Les données, tel qu'elles sont encodées, ne nécessitent pas de transformation.
+
+[] -   Les stations 15 à 23 tendent à avoir moins d'oiseaux.
+[] -   Les stations 15 à 23 tendent à avoir plus d'oiseaux.
+[] -   L'espèce la moins abondante est la fauvette mélanocéphale.
+[] -   L'espèce la plus abondante est la fauvette mélanocéphale.}-")
+```
+
+## Ordination
+
+Voici les résultats d'un analyse factorielle des correspondances sur ce jeu de données.
+
+<!--% Réalisez une analyse factorielle des correspondances sur `birds`. Nommez cet objet `birds_ca`. Affichez également le résumé de cet objet. -->
+
+```{r ca, record='ROP', object='birds_ca', arg='call,rownames,colnames,'}
+birds_ca <- ___
+___
+```
+
+<!--% Réalisez le graphique des éboulis de votre AFC. -->
+
+```{r screeca, record='RNP', arg='labels'}
+___
+```
+
+<!--% Interprétez le résumé de l'AFC et le graphique des éboulis. -->
+
+```{r screecacomment, output='asis'}
+select_answer(r"-{
+[] -   Le premier axe de l'AFC reprend moins de la moitié de la variance.
+[] -   Le premier axe de l'AFC reprend plus de la moitié de la variance.
+  
+[] -   Le second axe de l'AFC reprend un peu plus d'un dixième la variance.
+[] -   Le second axe de l'AFC reprend 64% de la variance.
+
+[] -   Le premier plan de l'AFC représente presque les 2/3 de la variance totale et cela est perfait pour notre analyse.
+[] -   Le premier plan de l'AFC représente presque les 2/3 de la variance totale et nous nous en contenterons.
+[] -   Le premier plan de l'AFC représente presque les 2/3 de la variance totale et cela est totalement insuffisant.}-")
+```
+
+Un biplot du premier plan de notre AFC est représenté ci-dessous.
+
+<!--% Réalisez le graphique AFC des stations et des espèces sur les deux premiers axes. Utilisez la fonction de placement intelligent des labels avec `reple = TRUE` et définissez un ratio d'aspect du graphique de 0.6. -->
+
+```{r biplotca, fig.width=9, record='RNP', arg='labels'}
+___
+```
+
+<!--% Interprétez la disposition des stations, la disposition des espèces et les stations par rapport aux espèces. -->
+
+```{r biplotcacomment, output='asis'}
+select_answer(r"-{
+[] -   Les stations sont très dispersées sur le biplot AFC.
+[] -   Les stations sont parfaitement regroupées sur le biplot AFC.
+[] -   Les stations sont regroupées sur le biplot AFC sauf les stations 16, 22 et 23.
+  
+[] -   Toutes les espèces d'oiseaux sont regroupées.
+[] -   Toutes les espèces d'oiseaux sont dispersées.
+[] -   Plusieurs espèces d'oiseaux sont bien regroupées mais trois fauvettes se détachent nettement.
+[] -   Plusieurs espèces d'oiseaux sont bien regroupées mais trois fauvettes se détachent nettement. De plus, la chouette chevechette se détache à l'autre extrémité.
+[] -   Plusieurs espèces d'oiseaux sont bien regroupées mais trois fauvettes se détachent nettement, ainsi que trois bruants, deux chouettes et un hibou.
+
+[] -   Les premières stations de 1 à 7 définissent une extrémité de la distribution et sont caractérisées par la présence de la chouette chevechette.
+[] -   Les premières stations de 1 à 7 définissent une extrémité de la distribution et sont caractérisées par l'absence de la la chouette chevechette.
+[] -   Les fauvettes mélanocéphale et pitchou (et dans une moindre mesure la fauvette passerinette) tirent les données à l'autre extrémité et sont abondantes dans les stations 16, 22 et 23.
+[] -   Les fauvettes mélanocéphale et pitchou (et dans une moindre mesure la fauvette passerinette) tirent les données à l'autre extrémité par leur absence de la quasi-totalité des stations.
+  
+[] -   Les stations 16, 22 et 23 sont caractérisées par les trois fauvettes citées ci-dessus.
+[] -   Les stations 16, 22 et 23 sont caractérisées par la présence importante, entre autres, des fauvettes orphee et passerinette et du hibou moyen duc.
+[] -   Les stations 16, 22 et 23 sont caractérisées par la présence importante de la fauvette orphee et du hibou moyen duc.
+  
+[] -   Les stations 16, 22 et 23 se distinguent par un composition en avifaune plus pauvre que les autres.
+[] -   Les stations 16, 22 et 23 se distinguent par un composition en avifaune plus riche que les autres.}-")
+```
+
+# Discussion et conclusions
+
+<!--% Concluez ce carnet de notes en deux phrases. L'AFC vous parait-elle adéquate par rapport au but du travail ? -->
+
+...Votre discussion ici...
+
+# Référence
+
+<!--% N'indiquez rien ici. La référence bibliographique se placera automatiquement ici.-->

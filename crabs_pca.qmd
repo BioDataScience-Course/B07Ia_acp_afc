@@ -1,0 +1,205 @@
+---
+title: "Analyse en composantes principales sur des crabes"
+author: "___"
+date: "`r Sys.Date()`"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    toc: true
+editor: visual
+lang: fr
+editor_options: 
+  chunk_output_type: inline
+bibliography: references.bib
+---
+
+<!--% En partant du jeu de données `crabs` du package {MASS}, réalisez une ACP afin de différencier les quatre groupes de *Leptograpsus variegatus* (deux couleurs et les deux sexes pour chaque espèce). -->
+
+# Introduction et but
+
+Le crabe *Leptograpsus variegatus* (Fabricius, 1793) vit dans l'Indo-Pacifique tropical. Il est habituellement de couleur bleue à pourpre, mais une variante orange est observée notamment à Freemantle à l'ouest de l'Australie. Un dimorphisme sexuel est observé chez cette espèce. L'objectif de ce carnet de notes est de réaliser une analyse en composantes principales (ACP) afin de vérifier si les deux variétés de couleur de *Leptograpsus variegatus*, ainsi que les mâles et femelles des deux variétés se séparent du point de vue de leurs caractéristiques morphologiques.
+
+# Matériel et méthodes
+
+Le jeu de données est issu du package {MASS} (jeu de données `crabs`) et provient de la publication de @Campbell1974.
+
+L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {exploreit} version `r packageVersion("exploreit")` dans la [SciViews Box 2023](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler ce bloc-notes.
+
+# Résultats
+
+```{r setup, include=FALSE}
+# Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
+if (!"tools:tests" %in% search())
+  source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
+
+# Configuration de l'environnement SciViews::R
+SciViews::R(___, lang = "fr")
+```
+
+## Exploration des données
+
+Voici une description de nos données.
+
+<!--% Importez le jeu de données `crabs` du package `MASS`. Décrivez-les avec skimr::skim(). -->
+
+```{r importpca, record='RODFS', object='crabs'}
+crabs <- read(___)
+___
+```
+
+<!--% Réalisez une matrice de nuages de points pour vérifier la linéarité entre les variables quantitatives intéressantes en utilisant GGally::ggscatmat(). Notez que le triangle supérieur du graphique représente les corrélations de Pearson par défaut. -->
+
+```{r scatmat, record='RNP', arg='labels'}
+___
+```
+
+<!--% Interprétez votre tableau et votre graphique ci-dessous. -->
+
+```{r descpcacomment, output='asis'}
+select_answer(r"-{
+[] -   Le jeu de données contient 2 variables qualitatives et 6 variables quantitatives continues.
+[] -   Le jeu de données contient 2 variables qualitatives et 5 variables quantitatives continues.
+
+[] -   Il y a des valeurs manquantes.
+[] -   Le jeu de données est complet, sans valeurs manquantes.
+
+[] -   Les données ne doivent pas être transformées : les relations entre variables quantitatives sont suffisamment linéaires.
+[] -   Les données doivent être transformées car les relations entre variables quantitatives ne sont pas linéaires.
+
+[] -   Les coefficients de corrélation de Person entre variables quantitatives sont très faibles.
+[] -   Les coefficients de corrélation de Person entre variables quantitatives sont moyens.
+[] -   Les coefficients de corrélation de Person entre variables quantitatives sont élevés.
+[] -   Les coefficients de corrélation de Person entre variables quantitatives sont très élevés.}-")
+```
+
+## ACP sur les variables brutes
+
+Nous réalisons une ACP sur les données morphométriques des crabes (données standardisées).
+
+<!--% Réalisez une ACP avec la fonction `pca()`. Nommez cet objet `crabs_pca`. Affichez également le résumé de cet objet. Utilisez uniquement les variables quantitatives pertinentes ici. Vous standardiserez les données et afficherez le résumé de l'analyse. -->
+
+```{r pca, record='ROP', object='crabs_pca', arg='call,n.obs,method,scale'}
+crabs_pca <- ___
+___
+```
+
+<!--% Réalisez le graphique des éboulis de l'objet `crabs_pca`.-->
+
+```{r screepca, record='RNP', arg='labels'}
+___
+```
+
+<!--% Interprétez le résumé de l'ACP et le graphique des éboulis. -->
+
+```{r screepcacomment, output='asis'}
+select_answer(r"-{
+[] -   La variance se réparti bien essentiellement sur le premier plan de l'ACP. Nous pouvons étudier ce plan.
+[] -   L'essentiel de la variance est sur le premier axe de l'ACP.  Il y a probablement saturation.
+[] -   L'essentiel de la variance est sur le premier plan de l'ACP. Il y a probablement saturation.}-")
+```
+
+## ACP sur des indices calculés
+
+Après avoir calculé des ratios morphométriques par rapport à la longueur de la carapace, nous réalisons une seconde ACP sur données standardisées.
+
+<!--% Calculer des ratios qui permettent de résoudre le problème observé ci-dessus. Préparez un jeu de données `crabs2` en divisant chacune des variables quantitatives de `crabs` par `length`. -->
+
+```{r crabs2, record='RODFS', object='crabs2'}
+crabs2 <- smutate(crabs, ___)
+```
+
+<!--% Réalisez une seconde ACP avec la fonction `pca()` sur `crabs2` en utilisant uniquement les ratios pertinents et en les standardisant. Nommez cet objet `crabs_pca2`. Affichez également le résumé de cet objet. -->
+
+```{r pca2, record='ROP', object='crabs_pca2', arg='call,n.obs,method,scale'}
+crabs_pca2 <- ___
+___
+```
+
+<!--% Réalisez le graphique des éboulis de votre analyse `crabs_pca2`.-->
+
+```{r screepca2, record='RNP', arg='labels'}
+___
+```
+
+<!--% Interprétez le résumé de l'ACP 2 et de son graphique des éboulis. -->
+
+```{r screepca2comment, output='asis'}
+select_answer(r"-{
+[] -   La variance se réparti bien essentiellement sur le premier plan de l'ACP. Nous pouvons étudier ce plan qui reprend plus de 85% de la variance totale.
+[] -   La variance est à présent distribuée sur les quatre axes et nous devons en étudier les trois premiers qui cumulent plus de 93% de la variance totale.
+[] -   La variance est à présent distribuée sur les quatre axes et nous devons tous les conserver.}-")
+```
+
+Le graphique des variables dans le premier plan de cette seconde ACP sur les ratios morphométriques relatifs à la longueur de la carapace est présenté ci-dessous.
+
+<!--% Réalisez un graphique permettant de visualiser la représentation des variables dans le premier plan de l'ACP. -->
+
+```{r loadingspca2, record='RNP', arg='labels'}
+___
+```
+
+<!--% Interprétez ce graphique des variables de l'ACP 2. -->
+
+```{r loadingspca2comment, output='asis'}
+select_answer(r"-{
+[] -   Les variables 'depth' et 'front' sont fortement corrélées.
+[] -   Les variables 'depth' et 'width' sont inversément corrélées.
+[] -   Les variables 'depth' et 'rear' sont inversément corrélées.
+[] -   Les variables 'depth' et 'rear' ne sont pas corrélées.
+[] -   Les variables 'front' et 'width' sont inversément corrélées.
+[] -   Les variables 'front' et 'width' ne sont pas corrélées.
+  
+[] -   Le premier axe de l'ACP est uniquement corrélé avec la variable 'depth'.
+[] -   Le premier axe de l'ACP est corrélé avec la variable 'depth' et dans une moindre mesure avec 'width'.
+
+[] -   Le second axe de l'ACP est uniquement corrélé avec la variable 'rear'.
+[] -   Le second axe de l'ACP est corrélé avec la variable 'rear' et dans une moindre mesure avec 'front'.}-")
+```
+
+<!--% Calculez une nouvelle variable dans le jeu de données `crabs2` qui combine la variable `species` et la variable `sex` en une seule. Nommez cette nouvelle variable `sp_sex`. -->
+
+```{r newvar, record='RODFS', object='crabs2'}
+crabs2 <- smutate(crabs2, ___)
+```
+
+Nous représentons les individus dans le premier plan de notre ACP en utilisant la couleur pour différencier les variétés et les sexes.
+
+<!--% Réalisez un graphique permettant de visualiser la représentation des individus dans le premier plan de l'ACP 2. Utilisez la variable `sp_sex` pour différencier les individus sur votre graphique par la couleur. -->
+
+```{r scorespca2, record='RNP', arg='labels'}
+___ +
+  theme(legend.position = "right") +
+  stat_ellipse()
+```
+
+<!--% Interprétez ce graphique des individus de l'ACP 2.-->
+
+```{r scorespca2comment, output='asis'}
+select_answer(r"-{
+[] -   Les sous-groupes sont mal séparés sur le premier plan de l'ACP.
+[] -   Les sous-groupes sont tous bien séparés sur le premier plan de l'ACP.
+[] -   Les sous-groupes sont tous bien séparés sur le premier plan de l'ACP, surtout les variétés de couleur.
+[] -   Les sous-groupes sont tous bien séparés sur le premier plan de l'ACP, surtout les sexes.
+[] -   Les sous-groupes sont parfaitement séparés sur le premier plan de l'ACP.
+
+[] -   Le premier axe de l'ACP sépare les variétés de couleur. La variété bleue a une carapace plus épaisse.
+[] -   Le premier axe de l'ACP sépare les variétés de couleur. La variété bleue a une carapace moins épaisse.
+[] -   Le premier axe de l'ACP sépare les sexes. Les mâles ont une carapace plus épaisse.
+[] -   Le premier axe de l'ACP sépare les sexes. Les mâles ont une carapace moins épaisse.
+
+[] -   Le second axe de l'ACP sépare les variétés de couleur. La variété bleue a une carapace plus large à l'arrière.
+[] -   Le second axe de l'ACP sépare les variétés de couleur. La variété bleue a une carapace moins large à l'arrière.
+[] -   Le second axe de l'ACP sépare les sexes. Les mâles ont une carapace plus large à l'arrière.
+[] -   Le second axe de l'ACP sépare les sexes. Les mâles ont une carapace moins large à l'arrière.}-")
+```
+
+# Discussion et conclusions
+
+<!--% Concluez ce carnet de notes en 5 points maximum. -->
+
+...Votre discussion ici...
+
+# Référence
+
+<!--% N'indiquez rien ici. La référence bibliographique se placera automatiquement ici.-->
