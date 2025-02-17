@@ -18,13 +18,13 @@ bibliography: references.bib
 
 # Introduction et but
 
-Le crabe *Leptograpsus variegatus* (Fabricius, 1793) vit dans l'Indo-Pacifique tropical. Il est habituellement de couleur bleue à pourpre, mais une variante orange est observée notamment à Freemantle à l'ouest de l'Australie. Un dimorphisme sexuel est observé chez cette espèce. L'objectif de ce carnet de notes est de réaliser une analyse en composantes principales (ACP) afin de vérifier si les deux variétés de couleur de *Leptograpsus variegatus*, ainsi que les mâles et femelles des deux variétés se séparent du point de vue de leurs caractéristiques morphologiques.
+Le crabe *Leptograpsus variegatus* (Fabricius, 1793) vit dans l'Indo-Pacifique tropical. Il est habituellement de couleur bleue à pourpre, mais une variante orange est observée notamment à Fremantle à l'ouest de l'Australie. Un dimorphisme sexuel est observé chez cette espèce. L'objectif de ce carnet de notes est de réaliser une analyse en composantes principales (ACP) afin de vérifier si les deux variétés de couleur de *Leptograpsus variegatus*, ainsi que les mâles et femelles des deux variétés se séparent du point de vue de leurs caractéristiques morphologiques.
 
 # Matériel et méthodes
 
 Le jeu de données est issu du package {MASS} (jeu de données `crabs`) et provient de la publication de @Campbell1974.
 
-L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {exploreit} version `r packageVersion("exploreit")` dans la [SciViews Box 2023](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler ce bloc-notes.
+L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {exploreit} version `r packageVersion("exploreit")` dans la [SciViews Box 2024](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler ce bloc-notes.
 
 # Résultats
 
@@ -86,7 +86,7 @@ ___
 
 <!--% Réalisez le graphique des éboulis de l'objet `crabs_pca`.-->
 
-```{r screepca, record='RNP', arg='labels'}
+```{r screepca, record='RNCS'}
 ___
 ```
 
@@ -118,7 +118,7 @@ ___
 
 <!--% Réalisez le graphique des éboulis de votre analyse `crabs_pca2`.-->
 
-```{r screepca2, record='RNP', arg='labels'}
+```{r screepca2, record='RNCS'}
 ___
 ```
 
@@ -135,7 +135,7 @@ Le graphique des variables dans le premier plan de cette seconde ACP sur les rat
 
 <!--% Réalisez un graphique permettant de visualiser la représentation des variables dans le premier plan de l'ACP. -->
 
-```{r loadingspca2, record='RNP', arg='labels'}
+```{r loadingspca2, record='RNCS'}
 ___
 ```
 
@@ -167,7 +167,7 @@ Nous représentons les individus dans le premier plan de notre ACP en utilisant 
 
 <!--% Réalisez un graphique permettant de visualiser la représentation des individus dans le premier plan de l'ACP 2. Utilisez la variable `sp_sex` pour différencier les individus sur votre graphique par la couleur. -->
 
-```{r scorespca2, record='RNP', arg='labels'}
+```{r scorespca2, record='RNCS'}
 ___ +
   theme(legend.position = "right") +
   stat_ellipse()

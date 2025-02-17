@@ -24,7 +24,7 @@ Nous étudions ici la répartition d'oiseaux dans les Alpes françaises. Notre b
 
 Le jeu de données est issu du package {ade4} (jeu de données `atlas`) et provient de l'ouvrage de @lebreton1977.
 
-L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {exploreit} version `r packageVersion("exploreit")` dans la [SciViews Box 2023](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler ce bloc-notes.
+L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier le package {exploreit} version `r packageVersion("exploreit")` dans la [SciViews Box 2024](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler ce bloc-notes.
 
 # Résultats
 
@@ -54,7 +54,7 @@ ___
 
 <!--% Visualisez ces données sur un graphique de type raster en utilisant geom_raster() (voir cours en ligne). -->
 
-```{r raster, record='RNP', arg='labels'}
+```{r raster, record='RNCS'}
 birds %>.%
   smutate(., station = 1:nrow(birds)) %>.%
   spivot_longer(., Fauvette_orphee:Bruant_proyer, names_to = "species", values_to = "n") %>.%
@@ -97,7 +97,7 @@ ___
 
 <!--% Réalisez le graphique des éboulis de votre AFC. -->
 
-```{r screeca, record='RNP', arg='labels'}
+```{r screeca, record='RNCS'}
 ___
 ```
 
@@ -118,9 +118,9 @@ select_answer(r"-{
 
 Un biplot du premier plan de notre AFC est représenté ci-dessous.
 
-<!--% Réalisez le graphique AFC des stations et des espèces sur les deux premiers axes. Utilisez la fonction de placement intelligent des labels avec `reple = TRUE` et définissez un ratio d'aspect du graphique de 0.6. -->
+<!--% Réalisez le graphique AFC des stations et des espèces sur les deux premiers axes. Utilisez la fonction de placement intelligent des labels avec `repel = TRUE` et définissez un ratio d'aspect du graphique de 0.6. -->
 
-```{r biplotca, fig.width=9, record='RNP', arg='labels'}
+```{r biplotca, fig.width=9, record='RNCS'}
 ___
 ```
 

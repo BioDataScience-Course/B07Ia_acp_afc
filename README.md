@@ -24,6 +24,6 @@ Ce projet est individuel et cadré. Il doit vous permettre de démontrer les com
 
 ## Consignes
 
-Ce projet est en deux parties. La première partie traite de l'analyse en composantes principales et la seconde de l'analyse factorielle des correspondances. Débutez par compléter le fichier `crabs_pca.qmd`. Ensuite, complétez le fichier `birds_ca.qmd` afin de réaliser une AFC.
+Ce projet est en deux parties. La première partie traite de l'analyse en composantes principales et la seconde de l'analyse factorielle des correspondances. Commencez par compléter le fichier `crabs_pca.qmd`. Ensuite, complétez le fichier `birds_ca.qmd` pour réaliser une AFC.
 
-N'oubliez pas de réaliser un "Rendu" de vos documents en HTML à la fin pour vérifier que tout fonctionne bien, et utilisez les tests à disposition dans l'onglet "Construire" -> bouton "Construire tout". Corrigez les erreurs éventuelles rencontrées à ce stade avant de clôturer votre travail. Vérifiez également que votre dernier commit a bien été pushé sur GitHub avant la deadline.
+N'oubliez pas de faire un "Rendu" de vos documents en HTML à la fin pour vérifier que tout fonctionne bien, et utilisez les tests à disposition dans l'onglet "Construire" -> bouton "Construire tout". Corrigez les erreurs éventuelles rencontrées à ce stade avant de clôturer votre travail. Vérifiez également que votre dernier commit a bien été pushé sur GitHub avant la deadline. **Nous ne pouvons pas mettre de points à un document qui ne compile pas sans erreurs ou à un travail qui n'a pas été pushé sur GitHub avant la deadline.**.
